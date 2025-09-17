@@ -1,0 +1,149 @@
+/* NeonDev — aesthetic gaming + RGB lights style */
+:root{
+  --bg-1: #020617;
+  --bg-2: #061026;
+  --neon-cyan: #00f0ff;
+  --neon-purple: #b27cff;
+  --neon-pink: #ff5ccd;
+  --glass: rgba(255,255,255,0.04);
+  --muted: rgba(255,255,255,0.6);
+}
+
+/* Page background with subtle animated gradient */
+html,body{height:100%;margin:0;font-family: "JetBrains Mono", "Courier New", Courier, monospace;background: radial-gradient(1200px 600px at 10% 10%, rgba(18,10,40,0.6), transparent), linear-gradient(180deg, var(--bg-1), var(--bg-2)); color:#e6eef8}
+.page{display:flex;flex-direction:column;min-height:100vh;align-items:center;justify-content:center;padding:28px;gap:18px}
+
+/* Decorative side glows */
+.left-decor, .right-decor{
+  position:fixed;pointer-events:none;z-index:0;
+  width:420px;height:420px;border-radius:50%;
+  filter: blur(60px);opacity:0.65;
+}
+.left-decor{left:-160px;top:10vh;background:linear-gradient(135deg,var(--neon-purple),transparent)}
+.right-decor{right:-120px;bottom:5vh;background:linear-gradient(135deg,var(--neon-cyan),transparent)}
+
+/* App card */
+.app{
+  width: 780px;
+  max-width: calc(100% - 48px);
+  height: 640px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  border: 1px solid rgba(255,255,255,0.04);
+  border-radius: 14px;
+  box-shadow: 0 10px 40px rgba(2,6,23,0.6), 0 0 40px rgba(0,0,0,0.3) inset;
+  overflow: hidden;
+  display: grid;
+  grid-template-rows: 72px 1fr 92px;
+  position: relative;
+  z-index:1;
+}
+
+/* Header */
+.app-header{
+  display:flex;align-items:center;justify-content:space-between;padding:12px 18px;border-bottom:1px solid rgba(255,255,255,0.02);
+  background: linear-gradient(90deg, rgba(255,255,255,0.01), transparent);
+}
+.brand{display:flex;align-items:center;gap:12px}
+.logo{
+  width:44px;height:44px;border-radius:10px;background:linear-gradient(135deg,var(--neon-purple),var(--neon-pink));
+  display:flex;align-items:center;justify-content:center;font-weight:900;color:#031024;box-shadow:0 6px 22px rgba(178,124,255,0.25),0 0 12px rgba(255,92,205,0.12)
+}
+.title .name{font-weight:700;font-size:16px}
+.title .sub{font-size:12px;color:var(--muted)}
+
+/* status */
+.status{display:flex;align-items:center;gap:8px;color:var(--muted);font-size:13px}
+.dot{width:10px;height:10px;border-radius:50%}
+.dot.offline{background:#6b7280;box-shadow:none}
+.dot.online{background:var(--neon-cyan);box-shadow:0 0 10px var(--neon-cyan)}
+
+/* Chat area */
+.chat-box{
+  padding:18px;
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+  overflow-y:auto;
+  scrollbar-width:thin;
+  scrollbar-color: rgba(255,255,255,0.12) transparent;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.003), transparent);
+}
+
+/* message bubbles */
+.msg {
+  max-width:72%;
+  padding:12px 14px;
+  border-radius:12px;
+  font-size:14px;
+  line-height:1.45;
+  box-shadow: 0 6px 18px rgba(2,6,23,0.5);
+  word-wrap:break-word;
+  white-space:pre-wrap;
+}
+
+/* user on right: neon green/teal like console */
+.msg.user{
+  align-self:flex-end;
+  background: linear-gradient(180deg, rgba(220,248,198,0.9), rgba(220,248,198,0.85));
+  color:#05210b;
+  border-bottom-right-radius:4px;
+  box-shadow: 0 10px 30px rgba(0,200,140,0.06), 0 0 18px rgba(0,200,140,0.08);
+  border: 1px solid rgba(0,200,140,0.08);
+  transform: translateZ(0);
+}
+
+/* bot on left: dark glass with neon accents */
+.msg.bot{
+  align-self:flex-start;
+  background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
+  border-left: 3px solid rgba(0,240,255,0.08);
+  color: #eaf8ff;
+  border-bottom-left-radius:4px;
+  box-shadow: 0 8px 30px rgba(0,8,20,0.6), 0 0 24px rgba(0,240,255,0.02) inset;
+}
+
+/* tiny meta line */
+.meta{
+  display:block;margin-top:8px;font-size:11px;color:var(--muted);
+}
+
+/* composer area */
+.composer{
+  display:flex;align-items:center;gap:12px;padding:12px 16px;background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.02));border-top:1px solid rgba(255,255,255,0.02);
+}
+.prompt{flex:1;display:flex;align-items:center;gap:10px;background:var(--glass);padding:10px;border-radius:10px;border:1px solid rgba(255,255,255,0.03)}
+.prompt-icon{color:var(--neon-pink);font-weight:700}
+input#userInput{flex:1;background:transparent;border:none;color:inherit;font-family:inherit;outline:none;font-size:14px;padding:6px}
+.controls{display:flex;gap:8px}
+.btn-glow{
+  background:linear-gradient(90deg,var(--neon-cyan),var(--neon-purple));
+  color:#00121a;padding:10px 16px;border-radius:9px;border:none;cursor:pointer;font-weight:700;
+  box-shadow: 0 8px 30px rgba(0,240,255,0.08), 0 0 24px rgba(178,124,255,0.06);
+  transition:transform .12s ease;
+}
+.btn-glow:active{transform:translateY(1px)}
+.btn-minor{background:transparent;border:1px solid rgba(255,255,255,0.04);color:var(--muted);padding:10px 12px;border-radius:8px;cursor:pointer}
+
+/* footer */
+.footer{color:var(--muted);font-size:12px;opacity:0.9;}
+
+/* typing indicator bubble */
+.typing {
+  align-self: flex-start;
+  background: rgba(255,255,255,0.02);
+  padding:8px 12px;border-radius:999px;
+  display:inline-flex;gap:6px;align-items:center;
+}
+.dotx{
+  width:7px;height:7px;border-radius:50%;background:var(--neon-cyan);opacity:0.85;animation:blink 1s infinite ease-in-out;
+}
+.dotx:nth-child(2){animation-delay:0.12s}
+.dotx:nth-child(3){animation-delay:0.24s}
+@keyframes blink{0%{opacity:0.08}50%{opacity:0.95}100%{opacity:0.08}}
+
+/* responsiveness */
+@media (max-width:840px){
+  .app{width:100%;height:92vh;border-radius:10px}
+  .chat-box{padding:12px}
+}
